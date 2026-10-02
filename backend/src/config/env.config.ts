@@ -18,7 +18,7 @@ export const env = {
 
   // Meta Graph API Endpoints (v22.0)
   INSTAGRAM_GRAPH_API_URL: process.env.INSTAGRAM_GRAPH_API_URL || 'https://graph.instagram.com/v22.0',
-  INSTAGRAM_OAUTH_AUTHORIZE_URL: 'https://api.instagram.com/oauth/authorize',
+  INSTAGRAM_OAUTH_AUTHORIZE_URL: 'https://www.instagram.com/oauth/authorize',
   INSTAGRAM_OAUTH_TOKEN_URL: 'https://api.instagram.com/oauth/access_token',
   
   // Storage Directory

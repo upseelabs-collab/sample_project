@@ -27,7 +27,7 @@ export class InstagramCallbackComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const successParam = params['success'];
-      const errorParam = params['error'];
+      const rawError = params['error_description'] || params['error'] || params['error_reason'];
 
       if (successParam === 'true') {
         this.isSuccess = true;
@@ -48,7 +48,14 @@ export class InstagramCallbackComponent implements OnInit {
       } else {
         this.isSuccess = false;
         this.isProcessing = false;
-        this.errorMessage = errorParam || 'Instagram authorization was cancelled or failed.';
+        
+        if (rawError === 'access_denied' || params['error'] === 'access_denied') {
+          this.errorMessage = 'Authorization was declined. Please click Try Again to grant permissions.';
+        } else if (rawError) {
+          this.errorMessage = rawError;
+        } else {
+          this.errorMessage = 'Instagram authorization was cancelled or incomplete.';
+        }
       }
     });
   }

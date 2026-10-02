@@ -140,8 +140,6 @@ export class InstagramService {
     ].join(',');
 
     const params = new URLSearchParams({
-      enable_fb_login: '0',
-      force_authentication: '1',
       client_id: env.INSTAGRAM_APP_ID,
       redirect_uri: env.INSTAGRAM_REDIRECT_URI,
       response_type: 'code',
