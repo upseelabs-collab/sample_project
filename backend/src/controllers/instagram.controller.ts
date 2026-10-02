@@ -63,6 +63,27 @@ export class InstagramController {
   }
 
   /**
+   * GET /api/instagram/oauth-debug
+   * Safe diagnostic endpoint returning non-sensitive OAuth configuration state.
+   */
+  public getOAuthDebug(req: Request, res: Response): void {
+    res.json({
+      environment: env.NODE_ENV,
+      oauthHost: env.INSTAGRAM_OAUTH_AUTHORIZE_URL,
+      clientIdConfigured: Boolean(env.INSTAGRAM_APP_ID),
+      redirectUri: env.INSTAGRAM_REDIRECT_URI,
+      frontendUrl: env.FRONTEND_URL,
+      responseType: 'code',
+      scope: [
+        'instagram_business_basic',
+        'instagram_business_manage_messages',
+        'instagram_business_manage_comments',
+      ],
+      metaGraphApiUrl: env.INSTAGRAM_GRAPH_API_URL,
+    });
+  }
+
+  /**
    * GET /api/instagram/callback
    * Handles OAuth callback from Meta, exchanges authorization code for tokens,
    * retrieves account details, registers connection, and redirects to Angular callback page.

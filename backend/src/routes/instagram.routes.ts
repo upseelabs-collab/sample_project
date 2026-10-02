@@ -24,7 +24,8 @@ router.get('/media', apiLimiter, (req, res, next) => instagramController.getMedi
 // 3. Token Test Diagnostics
 router.get('/test', apiLimiter, (req, res, next) => instagramController.test(req, res, next));
 
-// 4. OAuth Registration Flow
+// 4. OAuth Registration Flow & Diagnostics
+router.get('/oauth-debug', apiLimiter, (req, res) => instagramController.getOAuthDebug(req, res));
 router.get('/auth', authLimiter, (req, res, next) => instagramController.getAuthUrl(req, res, next));
 router.get('/callback', authLimiter, (req, res, next) => instagramController.handleCallback(req, res, next));
 
