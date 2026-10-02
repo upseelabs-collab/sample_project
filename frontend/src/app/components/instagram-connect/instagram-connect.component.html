@@ -1,0 +1,242 @@
+<div class="creator-container">
+  <!-- Top Brand Header -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-icon">CC</div>
+      <div class="brand-text">
+        <h1>CreatorConnect</h1>
+        <span class="brand-badge">Instagram Integration</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Card -->
+  <main class="main-card">
+    <!-- ============================================== -->
+    <!-- STATE 1: NOT CONNECTED (Consumer Social Auth Flow) -->
+    <!-- ============================================== -->
+    <div *ngIf="state === 'not_connected'" class="state-container not-connected-view">
+      <div class="auth-box">
+        <div class="ig-logo-glow">
+          <div class="ig-gradient-circle">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.79-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </div>
+        </div>
+
+        <h2 class="auth-title">Instagram Integration</h2>
+        <h3 class="auth-subtitle">Connect your Instagram account to continue with CreatorConnect.</h3>
+        
+        <p class="auth-description">
+          Manage your Instagram account securely through CreatorConnect.
+        </p>
+
+        <!-- Primary CTA: Register with Instagram -->
+        <button
+          class="btn btn-ig-primary btn-cta"
+          (click)="connect()"
+          [disabled]="isRedirecting"
+          id="btn-register-instagram"
+        >
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.79-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+            Register with Instagram
+          </button>
+
+        <p class="auth-terms">
+          By continuing, you agree to allow CreatorConnect to access the requested Instagram account information.
+          <br />
+          <span class="auth-secure-badge">🔒 Secure OAuth authentication</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- STATE 2: CONNECTING / LOADING -->
+    <!-- ============================================== -->
+    <div *ngIf="state === 'loading'" class="state-container loading-view">
+      <div class="spinner-container">
+        <div class="ig-spinner"></div>
+        <h3>Connecting Instagram...</h3>
+        <p class="loading-subtext">Please complete the authorization in Instagram.</p>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- STATE 3: CONNECTED (Dashboard View) -->
+    <!-- ============================================== -->
+    <div *ngIf="state === 'connected'" class="state-container connected-view">
+      <!-- Status Top Bar -->
+      <div class="connected-topbar">
+        <div class="status-indicator">
+          <span class="badge badge-success">
+            <span class="dot pulse"></span> Instagram Connected ✓
+          </span>
+        </div>
+      </div>
+
+      <!-- Profile Card -->
+      <div class="profile-card">
+        <div class="profile-main">
+          <!-- Profile Picture -->
+          <div class="avatar-wrapper">
+            <img
+              *ngIf="connection?.profilePicture || profile?.profile_picture_url; else defaultAvatar"
+              [src]="connection?.profilePicture || profile?.profile_picture_url"
+              [alt]="connection?.username || 'Instagram Profile'"
+              class="profile-avatar"
+            />
+            <ng-template #defaultAvatar>
+              <div class="avatar-placeholder">
+                {{ (connection?.username || 'IG').substring(0, 2).toUpperCase() }}
+              </div>
+            </ng-template>
+            <div class="verified-badge">✓</div>
+          </div>
+
+          <!-- Account Details -->
+          <div class="profile-details">
+            <div class="profile-header-line">
+              <h3 class="profile-username">{{ '@' + (connection?.username || 'creator') }}</h3>
+            </div>
+            
+            <p class="account-type-text">
+              {{ 'Instagram ' + (connection?.accountType || profile?.account_type || 'Business') + ' Account' }}
+            </p>
+
+            <p *ngIf="connection?.name || profile?.name" class="profile-fullname">
+              {{ connection?.name || profile?.name }}
+            </p>
+            
+            <div class="meta-stats">
+              <div class="stat-badge">
+                <span class="stat-label">Connected on:</span>
+                <span class="stat-value">{{ (connection?.connectedAt | date:'dd/MM/yyyy') || 'Recently' }}</span>
+              </div>
+              <div class="stat-badge" *ngIf="connection?.mediaCount !== undefined || profile?.media_count !== undefined">
+                <span class="stat-label">Total Posts:</span>
+                <span class="stat-value highlight">{{ profile?.media_count !== undefined ? profile?.media_count : connection?.mediaCount }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Toolbar -->
+        <div class="profile-actions">
+          <a
+            [href]="'https://instagram.com/' + (connection?.username || profile?.username)"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+            id="btn-view-profile"
+          >
+            <span>View Profile ↗</span>
+          </a>
+
+          <button class="btn btn-secondary" (click)="loadMedia()" [disabled]="isLoadingMedia" id="btn-load-media">
+            <span *ngIf="isLoadingMedia" class="btn-spinner"></span>
+            <span>{{ isLoadingMedia ? 'Loading Media...' : '📸 Load Media' }}</span>
+          </button>
+
+          <button class="btn btn-danger-outline" (click)="openDisconnectModal()" id="btn-disconnect">
+            <span>Disconnect</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Media Grid Section -->
+      <div *ngIf="mediaLoaded" class="media-section">
+        <div class="media-header">
+          <h4>Recent Instagram Media</h4>
+          <span class="media-count-tag">{{ mediaItems.length }} posts loaded</span>
+        </div>
+
+        <div *ngIf="mediaItems.length === 0" class="empty-media">
+          <p>No media posts found for this Instagram account.</p>
+        </div>
+
+        <div *ngIf="mediaItems.length > 0" class="media-grid">
+          <div *ngFor="let item of mediaItems" class="media-card">
+            <div class="media-preview">
+              <img
+                *ngIf="item.media_type === 'IMAGE' || item.media_type === 'CAROUSEL_ALBUM'"
+                [src]="item.media_url || item.thumbnail_url"
+                [alt]="item.caption || 'Instagram Post'"
+                loading="lazy"
+              />
+              <video
+                *ngIf="item.media_type === 'VIDEO'"
+                [src]="item.media_url"
+                [poster]="item.thumbnail_url"
+                controls
+                muted
+              ></video>
+              <span class="media-type-tag">{{ item.media_type }}</span>
+            </div>
+            
+            <div class="media-content">
+              <p class="media-caption">{{ item.caption || 'No caption' }}</p>
+              <div class="media-footer">
+                <div class="media-metrics">
+                  <span *ngIf="item.like_count !== undefined" class="metric-item">
+                    ❤️ {{ item.like_count }}
+                  </span>
+                  <span *ngIf="item.comments_count !== undefined" class="metric-item">
+                    💬 {{ item.comments_count }}
+                  </span>
+                </div>
+                <a [href]="item.permalink" target="_blank" rel="noopener noreferrer" class="media-link">
+                  Instagram ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="mediaPagingNext" class="load-more-container">
+          <button class="btn btn-secondary" (click)="loadMoreMedia()" [disabled]="isLoadingMedia">
+            {{ isLoadingMedia ? 'Loading...' : 'Load More Posts' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- STATE 4: ERROR -->
+    <!-- ============================================== -->
+    <div *ngIf="state === 'error'" class="state-container error-view">
+      <div class="error-box">
+        <div class="error-icon-circle">✕</div>
+        <h3>Unable to connect Instagram</h3>
+        <p class="error-message-text">{{ errorMessage || 'An unexpected error occurred while communicating with Instagram.' }}</p>
+        <div class="error-actions">
+          <button class="btn btn-ig-primary" (click)="connect()" id="btn-try-again">
+            Try Again
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Disconnect Confirmation Modal -->
+  <div *ngIf="showDisconnectModal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-icon-danger">⚠️</div>
+      <h3>Disconnect Instagram Account?</h3>
+      <p>
+        Are you sure you want to disconnect <strong>{{ '@' + (connection?.username || 'your account') }}</strong> from CreatorConnect?
+        Your stored credentials will be removed.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-outline" (click)="showDisconnectModal = false" [disabled]="isDisconnecting">
+          Cancel
+        </button>
+        <button class="btn btn-danger" (click)="confirmDisconnect()" [disabled]="isDisconnecting" id="btn-confirm-disconnect">
+          {{ isDisconnecting ? 'Disconnecting...' : 'Yes, Disconnect' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

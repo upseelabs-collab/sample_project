@@ -1,0 +1,52 @@
+<div class="callback-container">
+  <div class="callback-card">
+    <!-- Success State -->
+    <div *ngIf="isSuccess" class="callback-content success">
+      <div class="icon-circle success-circle">
+        <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+
+      <h2>✓ Instagram Connected</h2>
+      
+      <p class="username-handle" *ngIf="connectionData?.username">
+        {{ '@' + connectionData?.username }}
+      </p>
+
+      <p class="desc">
+        Your Instagram account has been successfully connected.
+      </p>
+
+      <div class="redirect-box">
+        <div class="pulse-loader"></div>
+        <span>Redirecting to your dashboard in {{ countdown }}s...</span>
+      </div>
+
+      <button class="btn btn-primary" (click)="goToDashboard()">
+        Go to Dashboard Now
+      </button>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="!isSuccess" class="callback-content error">
+      <div class="icon-circle error-circle">
+        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </div>
+
+      <h2>Unable to connect Instagram</h2>
+      <p class="desc error-msg">
+        {{ errorMessage || 'Instagram connection failed. Please try again.' }}
+      </p>
+
+      <div class="action-buttons">
+        <button class="btn btn-primary" (click)="goToDashboard()">
+          Try Again
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
