@@ -133,11 +133,7 @@ export class InstagramService {
       throw new Error('INSTAGRAM_APP_ID is not configured in backend environment variables.');
     }
 
-    const scope = [
-      'instagram_business_basic',
-      'instagram_business_manage_messages',
-      'instagram_business_manage_comments',
-    ].join(',');
+    const scope = env.INSTAGRAM_SCOPES;
 
     const params = new URLSearchParams({
       client_id: env.INSTAGRAM_APP_ID,

@@ -74,11 +74,7 @@ export class InstagramController {
       redirectUri: env.INSTAGRAM_REDIRECT_URI,
       frontendUrl: env.FRONTEND_URL,
       responseType: 'code',
-      scope: [
-        'instagram_business_basic',
-        'instagram_business_manage_messages',
-        'instagram_business_manage_comments',
-      ],
+      scope: env.INSTAGRAM_SCOPES.split(','),
       metaGraphApiUrl: env.INSTAGRAM_GRAPH_API_URL,
     });
   }

@@ -16,10 +16,17 @@ export const env = {
   INSTAGRAM_REDIRECT_URI: process.env.INSTAGRAM_REDIRECT_URI || 'http://localhost:5000/api/instagram/callback',
   INSTAGRAM_VERIFY_TOKEN: process.env.INSTAGRAM_VERIFY_TOKEN || 'creatorconnect_verify_token_secure_2026',
 
-  // Meta Graph API Endpoints (v22.0)
+  // Meta Graph API Endpoints & Scopes (v22.0)
   INSTAGRAM_GRAPH_API_URL: process.env.INSTAGRAM_GRAPH_API_URL || 'https://graph.instagram.com/v22.0',
   INSTAGRAM_OAUTH_AUTHORIZE_URL: 'https://www.instagram.com/oauth/authorize',
   INSTAGRAM_OAUTH_TOKEN_URL: 'https://api.instagram.com/oauth/access_token',
+  INSTAGRAM_SCOPES: process.env.INSTAGRAM_SCOPES || [
+    'instagram_business_basic',
+    'instagram_business_manage_messages',
+    'instagram_business_manage_comments',
+    'instagram_business_content_publish',
+    'instagram_business_manage_insights',
+  ].join(','),
   
   // Storage Directory
   DATA_DIR: path.resolve(process.cwd(), 'data'),
