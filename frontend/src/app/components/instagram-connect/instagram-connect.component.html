@@ -137,12 +137,73 @@
 
           <button class="btn btn-secondary" (click)="loadMedia()" [disabled]="isLoadingMedia" id="btn-load-media">
             <span *ngIf="isLoadingMedia" class="btn-spinner"></span>
-            <span>{{ isLoadingMedia ? 'Loading Media...' : '📸 Load Media' }}</span>
+            <span>{{ isLoadingMedia ? 'Loading Media...' : '📸 Refresh Media' }}</span>
           </button>
 
           <button class="btn btn-danger-outline" (click)="openDisconnectModal()" id="btn-disconnect">
             <span>Disconnect</span>
           </button>
+        </div>
+      </div>
+
+      <!-- Active Business Capabilities & Permissions Showcase -->
+      <div class="features-showcase-card">
+        <div class="features-header">
+          <div class="features-title-group">
+            <span class="features-icon">⚡</span>
+            <div>
+              <h4>Authorized Business Capabilities</h4>
+              <p class="features-subtitle">Connected via Meta Graph API v22.0</p>
+            </div>
+          </div>
+          <span class="badge-feature-count">5 Active Permissions</span>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon-box">💬</div>
+            <div class="feature-info">
+              <span class="feature-name">Direct Messaging</span>
+              <span class="feature-scope">instagram_business_manage_messages</span>
+            </div>
+            <span class="feature-status-pill active">✓ Active</span>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon-box">✍️</div>
+            <div class="feature-info">
+              <span class="feature-name">Comments Moderation</span>
+              <span class="feature-scope">instagram_business_manage_comments</span>
+            </div>
+            <span class="feature-status-pill active">✓ Active</span>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon-box">📤</div>
+            <div class="feature-info">
+              <span class="feature-name">Content Publishing</span>
+              <span class="feature-scope">instagram_business_content_publish</span>
+            </div>
+            <span class="feature-status-pill active">✓ Active</span>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon-box">📊</div>
+            <div class="feature-info">
+              <span class="feature-name">Account Insights & Analytics</span>
+              <span class="feature-scope">instagram_business_manage_insights</span>
+            </div>
+            <span class="feature-status-pill active">✓ Active</span>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon-box">👤</div>
+            <div class="feature-info">
+              <span class="feature-name">Basic Profile & Media Sync</span>
+              <span class="feature-scope">instagram_business_basic</span>
+            </div>
+            <span class="feature-status-pill active">✓ Active</span>
+          </div>
         </div>
       </div>
 

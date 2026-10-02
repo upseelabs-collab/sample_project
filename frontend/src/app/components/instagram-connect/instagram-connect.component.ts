@@ -48,6 +48,7 @@ export class InstagramConnectComponent implements OnInit {
           this.connection = res.data;
           this.state = 'connected';
           this.fetchLiveProfile();
+          this.loadMedia();
         } else {
           this.connection = null;
           this.state = 'not_connected';
