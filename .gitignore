@@ -1,0 +1,29 @@
+# Dependency directories
+node_modules/
+
+# Production and build outputs
+dist/
+build/
+.angular/
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+data/
+*.pem
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
